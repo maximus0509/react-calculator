@@ -10,13 +10,14 @@ function App() {
   return (
     <div className="App">
       <Mode />
+      {/* <Mode layout={layout} onChangeMode={onChangeMode} /> */}
       <Layout layout={layout} />
     </div>
   );
 }
 
-function onChangeMode() {
-
+function onChangeMode(e: any) {
+  console.log(`App.onChangeMode()`, e)
 }
 
 interface LayoutProps {

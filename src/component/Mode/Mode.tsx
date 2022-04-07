@@ -2,27 +2,49 @@ import { IconLookup } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-interface SelectModeProp {
-    onChangeMode?: Function
+export interface SelectModeProp {
+    onChangeMode?: Function,
+    layout: string,
 }
 
 export class Mode extends React.Component {
 
-
-    // onClick: Function;
     constructor(props: SelectModeProp) {
         super(props);
-        // this.onClick = this.onClick.bind(this)
-    };
+        this.state = {
+            layout: props.layout,
+            showMenu: false,
+        };
+
+        this.onChangeMode = this.onChangeMode.bind(this);
+    }
+
+    onChangeMode() {
+        this.setState(prevState => ({
+            // layout: this.state.layout
+        }));
+    }
+
+    // componentDidMount() { }
+
+    // componentWillUnmount() { }
 
     render() {
         const barsIcon: IconLookup = { prefix: 'fas', iconName: 'bars' }
+        return (
+            <div className="ChangeModeButton">
+                <button className="btn" onClick={this.onClickIcon}>
+                    <FontAwesomeIcon icon={barsIcon} />
+                    {/* {this.state.layout} */}
+                </button>
+            </div>
+        );
+    }
 
-        return <div className="ChangeModeButton">
-            <button className="btn">
-                <FontAwesomeIcon icon={barsIcon} />
-            </button>
-        </div>
-        // return <button className="ChangeModeButton" onClick={this.onClick()}></button>
-    };
+    onClickIcon() {
+        console.log(`Mode.onClickIcon()`);
+        this.setState(prevState => ({
+            showMenu: prevState.showMenu,
+        }));
+    }
 }
